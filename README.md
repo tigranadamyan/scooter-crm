@@ -117,7 +117,7 @@ scooter-crm/
 
 ### Установка одной командой
 ```bash
-git clone <url-репозитория> && cd scooter-crm && ./setup.sh
+git clone https://github.com/tigranadamyan/scooter-crm.git && cd scooter-crm && ./setup.sh
 ```
 
 Скрипт `setup.sh` автоматически:
