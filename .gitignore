@@ -1,0 +1,84 @@
+# Dependencies
+/node_modules
+/vendor
+composer.lock
+package-lock.json
+
+# Build output
+/public/build
+/bootstrap/ssr
+
+# Environment
+.env
+.env.backup
+.env.production
+.env.local
+
+# IDE & Editor
+/.fleet
+/.idea
+/.nova
+/.vscode
+/.zed
+/.cursor
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store1
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+
+# Testing
+/.phpunit.cache
+.phpunit.result.cache
+/default.profraw
+
+# PHP
+.phpactor.json
+Homestead.json
+Homestead.yaml
+
+# OpenCode / AI
+/.omo
+/.opencode
+/.ai-terminal
+/.claude
+/.codegpt
+/.codeium
+/.devin
+/.kiro
+/.windsurf
+
+# Docker
+/auth.json
+
+# Hot reload
+/public/hot
+
+# Storage
+/public/storage
+/storage/*.key
+/storage/pail
+
+# Wayfinder (Laravel)
+/resources/js/actions
+/resources/js/routes
+/resources/js/wayfinder
+
+# Frontend generated
+/public/fonts-manifest.dev.json
+/public/hot
+
+# Misc
+*.cache
+*.tmp
+*.temp
+/.cache

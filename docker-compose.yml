@@ -1,0 +1,57 @@
+services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "8888:80"
+    volumes:
+      - .:/var/www
+      - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+      - postgres
+    networks:
+      - scooter-crm
+
+  php:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    volumes:
+      - .:/var/www
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - scooter-crm
+    environment:
+      - DB_CONNECTION=pgsql
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_DATABASE=scooter_crm
+      - DB_USERNAME=scooter
+      - DB_PASSWORD=secret
+
+  postgres:
+    image: postgres:16-alpine
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_DB: scooter_crm
+      POSTGRES_USER: scooter
+      POSTGRES_PASSWORD: secret
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U scooter -d scooter_crm"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - scooter-crm
+
+volumes:
+  postgres_data:
+
+networks:
+  scooter-crm:
+    driver: bridge
